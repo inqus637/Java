@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +12,8 @@
  * @author Admin
  */
 public class MainFrame extends javax.swing.JFrame {
-
+public static int nn;// Начало рандома 
+public static int mm;// Предел рандома
     /**
      * Creates new form MainFrame
      */
@@ -47,7 +51,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Min:");
+        jLabel1.setText("Min :");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Max:");
@@ -97,16 +101,22 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String NR=jTextField1.getText(); // Начало рандома 
-int nn= Integer.parseInt(NR); // Перевод введенной строки в число 
-String KR=jTextField2.getText(); // Предел рандома 
-int mm= Integer.parseInt(KR)+1; // Перевод введенной строки в число 
-int a =nn+ (int) (Math.random()* mm); // начальное число в этой функции задать нельзя поэтому мы прибавляем его уже к готовому результату рандома. 
-String aa= ""+a; // Перевод а в строку. В java нельзя просто написать цифру нужно прибавить к ней пустой текст в кавычках 
-jLabel3.setText(aa); 
- // TODO add your handling code here:
+try{
+String NR=jTextField1.getText();
+String KR=jTextField2.getText();
+int mm= Integer.parseInt(KR)+1;
+int nn= Integer.parseInt(NR);
+if(nn+1>mm){JOptionPane.showMessageDialog(null, "минимальное число больше максимального");}
+else if(nn>999999 || mm>1000000){JOptionPane.showMessageDialog(null, "введено число больше 999999");}
+else{
+int a =nn+ (int) (Math.random()* (mm-nn));
+String aa= ""+a; // Перевод а в строку. 
+jLabel3.setText(aa);}}
+catch(java.lang.NumberFormatException e){
+JOptionPane.showMessageDialog(null, "Введены неверные данные попробуйте ввести число");
+}
     }//GEN-LAST:event_jButton1ActionPerformed
-
+   
     /**
      * @param args the command line arguments
      */
